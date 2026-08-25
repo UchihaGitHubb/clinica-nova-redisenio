@@ -1,0 +1,187 @@
+/* MobileMenu · docs/04-DESIGN-SYSTEM.md §15 */
+
+.panel {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  /* Claro, no oscuro: mantiene la calma y evita el efecto de
+     aplicación móvil (§15.2). */
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+
+  /* Deslizamiento desde la derecha. La visibilidad se retrasa hasta
+     el final de la transición de salida para que el panel no
+     desaparezca de golpe a mitad de recorrido. */
+  transform: translateX(100%);
+  visibility: hidden;
+  transition:
+    transform var(--motion-medium) var(--ease-out),
+    visibility 0s linear var(--motion-medium);
+}
+
+/* Apertura 280ms, cierre 240ms: el cierre es ~15% más rápido porque
+   el usuario ya sabe lo que va a pasar (§26.2). */
+.open {
+  transform: none;
+  visibility: visible;
+  transition:
+    transform var(--motion-slow) var(--ease-out),
+    visibility 0s;
+}
+
+@media (min-width: 1024px) {
+  .panel {
+    display: none;
+  }
+}
+
+/* --- Barra superior del panel (§15.3) --------------------------- */
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  height: var(--header-height);
+  padding-inline: var(--layout-padding);
+  border-bottom: var(--border-width-hairline) solid var(--color-border-hairline);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-inline-end: -0.5rem;
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* --- Cuerpo ---------------------------------------------------- */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  padding: var(--space-lg) var(--layout-padding) var(--space-2xl);
+}
+
+.list {
+  list-style: none;
+}
+
+.item {
+  border-bottom: var(--border-width-hairline) solid var(--color-border-hairline);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+/* Objetivo táctil generoso: 56px de alto (§15.4). */
+.link {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-height: 3.5rem;
+  font-size: var(--type-navigation-size);
+  font-weight: var(--type-navigation-weight);
+  letter-spacing: var(--type-navigation-tracking);
+  text-decoration: none;
+}
+
+.accordionToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Área táctil propia, separada del enlace padre: el chevron
+     expande, el texto navega al índice de la sección (§15.4). */
+  width: 2.75rem;
+  height: 3.5rem;
+  margin-inline-end: -0.75rem;
+  background: none;
+  border: 0;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.accordionToggle svg {
+  transition: transform var(--motion-base) var(--ease-in-out);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* --- Acordeón ---------------------------------------------------
+   La altura automática se anima con la retícula: 0fr → 1fr es la
+   única forma de transicionar a `auto` sin fijar un máximo
+   arbitrario que rompería con contenidos más largos. */
+
+.sub {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--motion-medium) var(--ease-in-out);
+}
+
+.subOpen {
+  grid-template-rows: 1fr;
+}
+
+.subList {
+  overflow: hidden;
+  list-style: none;
+}
+
+.subLink {
+  display: flex;
+  align-items: center;
+  min-height: 3rem; /* 48px */
+  padding-inline-start: var(--space-sm); /* sangrado de 16px */
+  font-size: 1.0625rem; /* 17px (§15.4) */
+  font-weight: var(--font-weight-body-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+/* --- Pie del panel ---------------------------------------------- */
+
+.footer {
+  margin-block-start: var(--space-xl); /* 48px (§15.3) */
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  margin-block-start: var(--space-md); /* 24px */
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-height: 2.75rem;
+  font-size: var(--type-body-size);
+  font-weight: var(--font-weight-body-medium);
+}

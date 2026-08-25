@@ -1,0 +1,55 @@
+/* MobileActionBar · docs/04-DESIGN-SYSTEM.md §15.6 */
+
+.bar {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: var(--z-sticky);
+  display: flex;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-sm);
+  padding-bottom: calc(var(--space-2xs) + env(safe-area-inset-bottom));
+
+  /* Translúcida con desenfoque: deja intuir el contenido que cubre,
+     de modo que no se percibe como una franja pegada encima. */
+  background-color: rgb(245 241 233 / 0.94);
+  border-top: var(--border-width-hairline) solid var(--color-divider);
+  box-shadow: var(--shadow-floating);
+
+  transform: translateY(100%);
+  transition: transform var(--motion-slow) var(--ease-out);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .bar {
+    backdrop-filter: blur(12px);
+  }
+}
+
+.visible {
+  transform: none;
+}
+
+/* No existe por encima de tablet: ahí el CTA vive en la cabecera. */
+@media (min-width: 768px) {
+  .bar {
+    display: none;
+  }
+}
+
+/* Reparto 68/32 (§15.6): el CTA principal domina y WhatsApp queda
+   como alternativa reconocible, no como igual. */
+.primary {
+  flex: 68 1 0;
+  min-height: 3rem; /* 48px */
+}
+
+.secondary {
+  flex: 32 1 0;
+  min-height: 3rem;
+  padding-inline: var(--space-xs);
+}
+
+.secondaryLabel {
+  font-size: var(--type-body-small-size);
+}

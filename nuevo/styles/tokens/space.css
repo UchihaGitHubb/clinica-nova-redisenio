@@ -1,0 +1,45 @@
+/* ============================================================
+   Design tokens — Espaciado, radios, sombras y bordes
+   Fuente: docs/04-DESIGN-SYSTEM.md §9, §10, §11, §12, §29.3
+
+   Base 4px, 13 pasos. Prohibido usar un valor fuera de la escala:
+   cada excepción rompe el ritmo y es acumulativa.
+   ============================================================ */
+
+:root {
+  /* --- Escala de espaciado (§9.1) ------------------------- */
+  --space-3xs: 0.25rem; /*   4px */
+  --space-2xs: 0.5rem; /*   8px */
+  --space-xs: 0.75rem; /*  12px */
+  --space-sm: 1rem; /*  16px */
+  --space-md: 1.5rem; /*  24px — gutter de retícula, padding de tarjeta */
+  --space-lg: 2rem; /*  32px */
+  --space-xl: 3rem; /*  48px */
+  --space-2xl: 4rem; /*  64px — sección en móvil */
+  --space-3xl: 5rem; /*  80px */
+  --space-4xl: 6rem; /*  96px — sección en tablet */
+  --space-5xl: 7.5rem; /* 120px — sección en escritorio */
+  --space-6xl: 10rem; /* 160px — sección amplia */
+  --space-7xl: 12.5rem; /* 200px — excepcional */
+
+  /* --- Radios (§10.1) -------------------------------------
+     La esquina viva es identidad. Nada por encima de 4px salvo
+     las dos excepciones documentadas de radius-full. */
+  --radius-none: 0;
+  --radius-xs: 2px; /* botones, campos, chips */
+  --radius-sm: 4px; /* modales */
+  --radius-md: 0.75rem; /* tarjetas editoriales de fotografía */
+  --radius-full: 999px; /* pastillas, botones circulares, recortes redondos */
+
+  /* --- Bordes (§11.1) ------------------------------------- */
+  --border-width-hairline: 1px;
+  --border-width-focus: 2px;
+  --focus-offset: 2px;
+
+  /* --- Sombras (§12.1) -----------------------------------
+     Tinte azul principal, nunca negro puro. Opacidad máxima 0.12. */
+  --shadow-none: none;
+  --shadow-subtle: 0 1px 2px rgb(18 59 93 / 0.04), 0 2px 8px rgb(18 59 93 / 0.04);
+  --shadow-elevated: 0 4px 16px rgb(18 59 93 / 0.06), 0 1px 3px rgb(18 59 93 / 0.04);
+  --shadow-floating: 0 8px 32px rgb(18 59 93 / 0.1), 0 2px 8px rgb(18 59 93 / 0.06);
+}

@@ -1,0 +1,88 @@
+/* PlaceholderImage · recuadro editorial, no un gris plano */
+
+.frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  background-color: var(--color-brand-primary-dark);
+}
+
+.portrait {
+  aspect-ratio: var(--ratio-portrait);
+}
+
+.hero {
+  aspect-ratio: 4 / 5;
+  height: 100%;
+}
+
+.landscape {
+  aspect-ratio: var(--ratio-landscape);
+}
+
+.square {
+  aspect-ratio: var(--ratio-square);
+}
+
+.round {
+  aspect-ratio: var(--ratio-square);
+  border-radius: var(--radius-full);
+}
+
+.studio {
+  background:
+    radial-gradient(ellipse 48% 42% at 50% 38%, rgb(216 179 106 / 0.22) 0%, transparent 68%),
+    linear-gradient(165deg, #1a4a6e 0%, #07345a 52%, #052b49 100%);
+}
+
+.warm {
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 38%, rgb(245 241 233 / 0.28) 0%, transparent 58%),
+    linear-gradient(160deg, #3d5f78 0%, #07345a 55%, #052b49 100%);
+}
+
+.cool {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 50%, rgb(61 95 120 / 0.55) 0%, transparent 70%),
+    linear-gradient(180deg, #2a4d68 0%, #07345a 100%);
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 36%,
+    color-mix(in srgb, var(--color-brand-primary-dark) 55%, transparent) 100%
+  );
+  pointer-events: none;
+}
+
+.figure {
+  display: none;
+}
+
+.caption {
+  position: absolute;
+  z-index: 2;
+  inset-inline: var(--space-sm);
+  inset-block-end: var(--space-sm);
+  color: rgb(245 241 233 / 0.55);
+  font-family: var(--font-body);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    aspect-ratio: auto;
+    min-height: 100%;
+  }
+}

@@ -1,0 +1,31 @@
+/* Section · docs/04-DESIGN-SYSTEM.md §1.9, §9.2, §30.1
+
+   El color lo aporta el contrato de superficie: al declarar
+   data-surface, todas las variables --surface-* de dentro cambian
+   y los componentes hijos se adaptan sin recibir props. */
+
+.section {
+  background-color: var(--surface-bg);
+  color: var(--surface-text);
+  padding-block: var(--section-padding-y);
+}
+
+.compact {
+  padding-block: var(--section-padding-y-compact);
+}
+
+.wide {
+  padding-block: var(--section-padding-y-wide);
+}
+
+/* Sin ritmo vertical propio: para secciones que gobiernan su
+   propia altura, como el hero. */
+.flush {
+  padding-block: 0;
+}
+
+/* Filete de 1px para separar dos secciones del mismo fondo (§11.2).
+   No se usa cuando el fondo ya cambia: sería redundante. */
+.divided {
+  border-top: var(--border-width-hairline) solid var(--surface-border-hairline);
+}

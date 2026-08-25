@@ -1,0 +1,26 @@
+.reveal {
+  transition:
+    opacity var(--motion-reveal-fade) var(--ease-out),
+    transform var(--motion-reveal) var(--ease-out);
+}
+
+@media (scripting: enabled) {
+  .reveal.ready:not(.revealed) {
+    opacity: 0;
+    transform: translate3d(0, var(--motion-distance-max), 0);
+  }
+}
+
+.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.ready:not(.revealed) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

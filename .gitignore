@@ -1,0 +1,24 @@
+# Captura local del sitio actual. No forma parte de la app ni del despliegue.
+original/
+
+# Dependencias y build, por si se instalan en la raíz
+node_modules/
+.next/
+out/
+build/
+coverage/
+
+# Entorno
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+*.pem
+
+# Vercel local
+.vercel

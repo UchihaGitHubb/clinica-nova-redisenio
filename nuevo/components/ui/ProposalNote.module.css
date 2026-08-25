@@ -1,0 +1,30 @@
+.note {
+  display: grid;
+  gap: var(--space-sm);
+  max-width: 52ch;
+}
+
+.mark {
+  font-family: var(--font-body);
+  font-size: var(--type-overline-size);
+  font-weight: var(--type-overline-weight);
+  letter-spacing: var(--type-overline-tracking);
+  line-height: var(--type-overline-leading);
+  text-transform: uppercase;
+  color: var(--color-brand-accent-deep);
+}
+
+.mark::before {
+  content: '';
+  display: block;
+  width: var(--layout-accent-rule);
+  height: var(--border-width-hairline);
+  margin-block-end: var(--space-md);
+  background-color: var(--color-brand-accent);
+}
+
+.body {
+  color: var(--surface-text-secondary);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+}

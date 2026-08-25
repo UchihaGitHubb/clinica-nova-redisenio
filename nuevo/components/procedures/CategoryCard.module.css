@@ -1,0 +1,126 @@
+.card {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background-color: var(--color-bg-dark);
+}
+
+.featured .media {
+  aspect-ratio: 16 / 10;
+}
+
+.photo,
+.fallback {
+  object-fit: cover;
+}
+
+.fallback {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.photo {
+  object-position: center 42%;
+  transition: transform var(--motion-image) var(--ease-out);
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 38%,
+    color-mix(in srgb, var(--color-brand-primary-dark) 90%, transparent) 100%
+  );
+  pointer-events: none;
+}
+
+.meta {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  color: var(--color-text-on-dark);
+}
+
+.count {
+  font-size: var(--type-caption-size);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(245 241 233 / 0.72);
+}
+
+.label {
+  margin-block-start: 0.2rem;
+  font-family: var(--font-display);
+  font-size: var(--type-h2-size);
+  font-weight: var(--font-weight-display-regular);
+  line-height: 1.1;
+}
+
+.tags {
+  margin-block-start: var(--space-3xs);
+  color: rgb(245 241 233 / 0.78);
+  font-size: var(--type-caption-size);
+}
+
+.arrow {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-brand-accent);
+  color: var(--color-text-on-accent);
+  transition: transform var(--motion-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .card:hover .photo {
+    transform: scale(var(--motion-scale-max));
+  }
+
+  .card:hover .arrow {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo,
+  .card:hover .photo,
+  .arrow,
+  .card:hover .arrow {
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .featured .media {
+    aspect-ratio: 4 / 5;
+    min-height: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .label {
+    font-size: var(--type-h3-size);
+  }
+}

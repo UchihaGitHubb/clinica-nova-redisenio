@@ -1,0 +1,162 @@
+/* ============================================================
+   Design tokens — Tipografía
+   Fuente: docs/04-DESIGN-SYSTEM.md §5, §6, §29.2
+
+   Dos familias, sin excepciones:
+   - Cormorant Garamond: Display, H1, H2, citas. Mínimo 26px,
+     tracking siempre negativo, jamás en versales.
+   - Manrope: H3, H4, cuerpo, interfaz, datos.
+
+   Estrategia mobile-first: el valor base es móvil. Los cuatro
+   estilos display escalan con clamp() entre 1024px y 1440px y
+   se detienen ahí (§6.2). El resto salta en el breakpoint
+   desktop. El cuerpo y la interfaz nunca escalan de forma
+   fluida: degradaría la medida de lectura.
+
+   --font-cormorant y --font-manrope los inyecta next/font
+   desde lib/fonts.ts.
+   ============================================================ */
+
+:root {
+  /* --- Familias -------------------------------------------
+     Las variables --font-cormorant y --font-manrope ya incluyen su
+     pila de reserva, declarada en lib/fonts.ts para que next/font
+     pueda ajustar las métricas del sustituto y reducir el salto de
+     maquetación. No repetirla aquí: se duplicaría. */
+  --font-display: var(--font-cormorant);
+  --font-body: var(--font-manrope);
+
+  /* --- Pesos --------------------------------------------- */
+  --font-weight-display-light: 300;
+  --font-weight-display-regular: 400;
+  --font-weight-display-medium: 500;
+  --font-weight-body-regular: 400;
+  --font-weight-body-medium: 500;
+  --font-weight-body-semibold: 600;
+
+  /* --- Medidas de lectura (§29.2) ------------------------ */
+  --measure-display: 22ch;
+  --measure-heading: 28ch;
+  --measure-body: 68ch;
+  --measure-quote: 34ch;
+  --measure-hero: 37.5rem; /* 600px · titular del hero */
+  --measure-lede: 31.25rem; /* 500px · subtítulo del hero */
+
+  /* ==========================================================
+     Escala tipográfica
+
+     Los cuatro estilos display usan clamp(min, slope, max).
+     La pendiente interpola linealmente el valor móvil en 1024px
+     hasta el valor escritorio en 1440px; clamp() se encarga de
+     los tramos inferior y superior.
+     ========================================================== */
+
+  /* Display XL — 44px → 88px · solo el hero de la portada */
+  --type-display-xl-size: clamp(2.75rem, 10.5769vw - 4.0192rem, 5.5rem);
+  --type-display-xl-leading: 0.95;
+  --type-display-xl-weight: var(--font-weight-display-light);
+  --type-display-xl-tracking: -0.02em;
+
+  /* Display — 36px → 64px */
+  --type-display-size: clamp(2.25rem, 6.7308vw - 2.0577rem, 4rem);
+  --type-display-leading: 1;
+  --type-display-weight: var(--font-weight-display-light);
+  --type-display-tracking: -0.02em;
+
+  /* H1 — 32px → 48px · título de página */
+  --type-h1-size: clamp(2rem, 3.8462vw - 0.4615rem, 3rem);
+  --type-h1-leading: 1.05;
+  --type-h1-weight: var(--font-weight-display-regular);
+  --type-h1-tracking: -0.015em;
+
+  /* H2 — 26px → 36px · título de sección */
+  --type-h2-size: clamp(1.625rem, 2.4038vw + 0.0865rem, 2.25rem);
+  --type-h2-leading: 1.15;
+  --type-h2-weight: var(--font-weight-display-regular);
+  --type-h2-tracking: -0.01em;
+
+  /* H3 — 20px → 24px · Manrope. Aquí empieza el registro de lectura */
+  --type-h3-size: 1.25rem;
+  --type-h3-leading: 1.3;
+  --type-h3-weight: var(--font-weight-body-semibold);
+  --type-h3-tracking: -0.005em;
+
+  /* H4 — 18px → 20px · títulos de tarjeta */
+  --type-h4-size: 1.125rem;
+  --type-h4-leading: 1.35;
+  --type-h4-weight: var(--font-weight-body-semibold);
+  --type-h4-tracking: 0;
+
+  /* Body large — 18px → 20px · subtítulos */
+  --type-body-large-size: 1.125rem;
+  --type-body-large-leading: 1.6;
+  --type-body-large-weight: var(--font-weight-body-regular);
+  --type-body-large-tracking: 0;
+
+  /* Body — 16px → 17px · texto por defecto */
+  --type-body-size: 1rem;
+  --type-body-leading: 1.65;
+  --type-body-weight: var(--font-weight-body-regular);
+  --type-body-tracking: 0;
+
+  /* Body small — 14px → 15px */
+  --type-body-small-size: 0.875rem;
+  --type-body-small-leading: 1.6;
+  --type-body-small-weight: var(--font-weight-body-regular);
+  --type-body-small-tracking: 0;
+
+  /* Caption — 12px → 13px · metadatos */
+  --type-caption-size: 0.75rem;
+  --type-caption-leading: 1.4;
+  --type-caption-weight: var(--font-weight-body-medium);
+  --type-caption-tracking: 0.02em;
+
+  /* Overline — 11px → 12px · el único estilo en versales */
+  --type-overline-size: 0.6875rem;
+  --type-overline-leading: 1.2;
+  --type-overline-weight: var(--font-weight-body-semibold);
+  --type-overline-tracking: 0.14em;
+
+  /* Button — 15px fijo en todos los tamaños */
+  --type-button-size: 0.9375rem;
+  --type-button-leading: 1;
+  --type-button-weight: var(--font-weight-body-semibold);
+  --type-button-tracking: 0.02em;
+
+  /* Navigation — 20px móvil → 15px escritorio.
+     Es intencional: en el panel móvil los elementos son
+     objetivos táctiles; en la barra de escritorio, etiquetas. */
+  --type-navigation-size: 1.25rem;
+  --type-navigation-leading: 1;
+  --type-navigation-weight: var(--font-weight-body-medium);
+  --type-navigation-tracking: 0.01em;
+
+  /* Quote — 21px → 28px · Cormorant cursiva */
+  --type-quote-size: 1.3125rem;
+  --type-quote-leading: 1.45;
+  --type-quote-weight: var(--font-weight-display-regular);
+  --type-quote-tracking: -0.005em;
+
+  /* Numeral — 64px → 120px · recurso gráfico, sustituye iconos */
+  --type-numeral-size: 4rem;
+  --type-numeral-leading: 1;
+  --type-numeral-weight: var(--font-weight-display-light);
+  --type-numeral-tracking: -0.03em;
+}
+
+/* Escalón desktop para los estilos no fluidos.
+   1024px = breakpoint desktop (§28.1). */
+@media (min-width: 1024px) {
+  :root {
+    --type-h3-size: 1.5rem; /* 24px */
+    --type-h4-size: 1.25rem; /* 20px */
+    --type-body-large-size: 1.25rem; /* 20px */
+    --type-body-size: 1.0625rem; /* 17px */
+    --type-body-small-size: 0.9375rem; /* 15px */
+    --type-caption-size: 0.8125rem; /* 13px */
+    --type-overline-size: 0.75rem; /* 12px */
+    --type-navigation-size: 0.9375rem; /* 15px */
+    --type-quote-size: 1.75rem; /* 28px */
+    --type-numeral-size: 7.5rem; /* 120px */
+  }
+}

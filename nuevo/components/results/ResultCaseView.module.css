@@ -1,0 +1,154 @@
+.hero {
+  padding-block: var(--space-xl) var(--space-2xl);
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-on-dark);
+}
+
+.heroInner :global(nav) {
+  color: var(--color-text-on-dark-muted);
+  margin-block-end: var(--space-lg);
+}
+
+.heroInner :global(a:hover) {
+  color: var(--color-brand-accent);
+}
+
+.heroInner :global([aria-current='page']) {
+  color: var(--color-text-on-dark);
+}
+
+.overline {
+  font-family: var(--font-body);
+  font-size: var(--type-overline-size);
+  font-weight: var(--type-overline-weight);
+  letter-spacing: var(--type-overline-tracking);
+  text-transform: uppercase;
+  color: var(--color-brand-accent);
+}
+
+.overline::before {
+  content: '';
+  display: block;
+  width: var(--layout-accent-rule);
+  height: var(--border-width-hairline);
+  margin-block-end: var(--space-md);
+  background-color: var(--color-brand-accent);
+}
+
+.heroGrid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-block-start: var(--space-md);
+}
+
+.title {
+  max-width: 14ch;
+  font-family: var(--font-display);
+  font-size: var(--type-display-xl-size);
+  font-weight: var(--type-display-xl-weight);
+  line-height: var(--type-display-xl-leading);
+  letter-spacing: var(--type-display-xl-tracking);
+}
+
+.subtitle {
+  max-width: 28ch;
+  color: var(--color-text-on-dark-muted);
+  font-size: var(--type-body-large-size);
+  line-height: var(--type-body-large-leading);
+}
+
+.case {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.comparator {
+  min-width: 0;
+}
+
+.hint {
+  margin-block-start: var(--space-xs);
+  color: var(--surface-text-muted);
+  font-size: var(--type-caption-size);
+}
+
+.notice,
+.note {
+  max-width: 68ch;
+  padding-inline-start: var(--space-md);
+  border-inline-start: var(--border-width-hairline) solid var(--color-brand-accent);
+  color: var(--surface-text-secondary);
+  font-size: var(--type-body-small-size);
+  line-height: var(--type-body-small-leading);
+}
+
+.notice {
+  padding-block-start: 0;
+  border-top: none;
+}
+
+.storyTitle {
+  font-family: var(--font-body);
+  font-size: var(--type-overline-size);
+  font-weight: var(--type-overline-weight);
+  letter-spacing: var(--type-overline-tracking);
+  text-transform: uppercase;
+  color: var(--color-brand-accent-deep);
+}
+
+.storyTitle::before {
+  content: '';
+  display: block;
+  width: var(--layout-accent-rule);
+  height: var(--border-width-hairline);
+  margin-block-end: var(--space-md);
+  background-color: var(--color-brand-accent);
+}
+
+.related {
+  display: grid;
+  gap: var(--space-lg);
+  margin-block-start: var(--space-xl);
+  margin-block-end: var(--space-lg);
+  list-style: none;
+}
+
+.relatedItem {
+  min-width: 0;
+}
+
+.relatedLink {
+  display: grid;
+  gap: var(--space-xs);
+  color: inherit;
+  text-decoration: none;
+}
+
+.relatedMedia {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background-color: var(--color-brand-primary-dark);
+}
+
+.relatedPhoto {
+  object-fit: cover;
+}
+
+.relatedLabel {
+  font-size: var(--type-body-small-size);
+  color: var(--surface-text-secondary);
+}
+
+@media (min-width: 768px) {
+  .heroGrid {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: end;
+    gap: var(--space-3xl);
+  }
+
+  .related {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

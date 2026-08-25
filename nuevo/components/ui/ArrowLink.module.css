@@ -1,0 +1,56 @@
+/* ArrowLink · docs/04-DESIGN-SYSTEM.md §13.7, §25.2 */
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-height: 2.75rem;
+  font-family: var(--font-body);
+  font-size: var(--type-body-small-size);
+  font-weight: var(--font-weight-body-semibold);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--surface-text);
+  text-decoration: none;
+}
+
+.large {
+  font-size: var(--type-body-size);
+}
+
+/* El filete vive en la etiqueta, no en el enlace completo: así la
+   flecha puede separarse al pasar el cursor sin arrastrar la línea. */
+.label {
+  padding-block-end: var(--space-3xs);
+  border-bottom: var(--border-width-hairline) solid var(--surface-border-strong);
+  transition: border-color var(--motion-base) var(--ease-out);
+}
+
+.arrow {
+  flex: none;
+  transition: transform var(--motion-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .link:hover .label {
+    border-bottom-color: var(--color-brand-accent);
+  }
+
+  .link:hover .arrow {
+    transform: translateX(4px);
+  }
+}
+
+.link:focus-visible .label {
+  border-bottom-color: var(--color-brand-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow {
+    transition: none;
+  }
+
+  .link:hover .arrow {
+    transform: none;
+  }
+}

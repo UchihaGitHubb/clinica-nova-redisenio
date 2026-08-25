@@ -1,0 +1,67 @@
+/* SectionHeading · docs/04-DESIGN-SYSTEM.md §7.2, §30.2
+
+   Cabecera de sección estándar del sitio. Se repite sin variación,
+   porque la repetición es lo que construye reconocimiento. */
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* El único estilo en versales del sistema (§6.1). */
+.overline {
+  margin-bottom: var(--space-sm);
+  color: var(--color-brand-accent-deep);
+  font-family: var(--font-body);
+  font-size: var(--type-overline-size);
+  font-weight: var(--type-overline-weight);
+  line-height: var(--type-overline-leading);
+  letter-spacing: var(--type-overline-tracking);
+  text-transform: uppercase;
+}
+
+/* Filete de acento de 48px, el mismo gesto que abre el hero. Marca el
+   arranque de sección sin necesidad de un separador a todo el ancho. */
+.ruled::before {
+  content: '';
+  display: block;
+  width: var(--layout-accent-rule);
+  height: var(--border-width-hairline);
+  margin-block-end: var(--space-md);
+  background-color: var(--color-brand-accent);
+}
+
+/* Salto de línea decidido por el contenido (ver SectionHeading.tsx).
+   Por debajo de 480px se desactiva: en una pantalla estrecha una línea
+   fija produce huérfanas peores que el salto automático. */
+.titleLine {
+  display: inline;
+}
+
+@media (min-width: 480px) {
+  .titleLine {
+    display: block;
+  }
+}
+
+.subtitle {
+  margin-top: var(--space-md);
+  max-width: var(--measure-body);
+  color: var(--surface-text-secondary);
+  font-size: var(--type-body-large-size);
+  line-height: var(--type-body-large-leading);
+}
+
+/* Centrado: máximo una vez por página, y solo en la banda de CTA
+   final (§31.1). El centrado sistemático es el rasgo delator de la
+   plantilla. */
+.center {
+  align-items: center;
+  text-align: center;
+}
+
+.center .title,
+.center .subtitle {
+  margin-inline: auto;
+}

@@ -1,0 +1,106 @@
+.wrap {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+.group {
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-block-end: var(--space-sm);
+}
+
+.heading {
+  font-family: var(--font-body);
+  font-size: var(--type-h3-size);
+  font-weight: var(--font-weight-body-medium);
+  letter-spacing: 0.02em;
+  color: var(--surface-heading);
+}
+
+.count {
+  font-family: var(--font-display);
+  font-size: var(--type-h3-size);
+  font-weight: var(--font-weight-display-light);
+  color: var(--color-brand-accent-deep);
+}
+
+.list {
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'name arrow'
+    'hint arrow';
+  align-items: center;
+  column-gap: var(--space-md);
+  min-height: 3.5rem;
+  padding-block: var(--space-sm);
+  border-top: var(--border-width-hairline) solid var(--surface-border-hairline);
+  color: inherit;
+  text-decoration: none;
+}
+
+.name {
+  grid-area: name;
+  font-family: var(--font-display);
+  font-size: var(--type-h3-size);
+  font-weight: var(--font-weight-display-regular);
+  line-height: 1.2;
+  color: var(--surface-heading);
+}
+
+.hint {
+  grid-area: hint;
+  display: none;
+  color: var(--surface-text-secondary);
+  font-size: var(--type-caption-size);
+  line-height: 1.4;
+}
+
+.arrow {
+  grid-area: arrow;
+  color: var(--color-brand-accent-deep);
+  transition: transform var(--motion-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .row:hover .name {
+    color: var(--color-brand-accent-deep);
+  }
+
+  .row:hover .arrow {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow,
+  .row:hover .arrow {
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .row {
+    grid-template-columns: minmax(12rem, 0.42fr) 1fr auto;
+    grid-template-areas: 'name hint arrow';
+    min-height: 3.5rem;
+  }
+
+  .hint {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

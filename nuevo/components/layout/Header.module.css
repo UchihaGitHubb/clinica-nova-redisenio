@@ -1,0 +1,261 @@
+/* Header · docs/04-DESIGN-SYSTEM.md §14 */
+
+/* Superficie azul noche en los dos estados: lo único que se anima es
+   la aparición del fondo, nunca el color del contenido (ver Header.tsx).
+   El filete se dibuja en champagne traslúcido y no en claro: sobre azul
+   noche un filete claro se lee como una línea de interfaz, y esto tiene
+   que leerse como el borde de una superficie. */
+.header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: var(--z-header);
+  background-color: var(--surface-bg);
+  color: var(--surface-text);
+  border-bottom: var(--border-width-hairline) solid var(--color-border-on-dark-hairline);
+  transition:
+    background-color var(--motion-medium) var(--ease-in-out),
+    border-color var(--motion-medium) var(--ease-in-out);
+}
+
+/* Sobre el hero: sin fondo y sin filete. El contraste lo garantiza la
+   superficie profunda del propio hero. */
+.overHero {
+  background-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  height: var(--header-height);
+  padding-inline: var(--layout-padding);
+
+  /* Mismo eje que el Container de contenido: logo y titular alinean. */
+  max-width: calc(var(--layout-container-max) + var(--layout-padding) * 2);
+  margin-inline: auto;
+  transition: height var(--motion-medium) var(--ease-in-out);
+}
+
+.compact .inner {
+  height: var(--header-height-compact);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  flex: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand img {
+  max-width: 12.5rem;
+}
+
+/* --- Navegación de escritorio -----------------------------------
+   Oculta por debajo de 1024px: hasta ahí gobierna el panel móvil
+   (§8.2). No es una navegación reducida, es otra experiencia. */
+
+.nav {
+  display: none;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  list-style: none;
+}
+
+.navItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs);
+}
+
+/* El filete de acento es el único indicador de hover: el color del
+   texto no cambia (§14.5). Por su grosor de 1px no puede leerse como
+   ornamento, y es el uso más visible del champagne en todo el sitio. */
+.navLink {
+  position: relative;
+  display: inline-block;
+  padding-block: var(--space-2xs);
+  font-family: var(--font-body);
+  font-size: var(--type-navigation-size);
+  font-weight: var(--type-navigation-weight);
+  line-height: var(--type-navigation-leading);
+  letter-spacing: var(--type-navigation-tracking);
+  color: var(--surface-text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  /* 6px por debajo de la línea base del texto (§14.5). */
+  bottom: calc(var(--space-2xs) - 6px);
+  width: 0;
+  height: var(--border-width-hairline);
+  background-color: var(--color-brand-accent);
+  transition: width var(--motion-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .navLink:hover {
+    color: var(--color-brand-accent);
+  }
+
+  .navLink:hover::after {
+    width: 100%;
+  }
+}
+
+.navLink:focus-visible::after {
+  width: 100%;
+}
+
+.navToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: none;
+  border: 0;
+  color: var(--surface-text);
+  cursor: pointer;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.navToggle svg {
+  transition: transform var(--motion-base) var(--ease-in-out);
+}
+
+/* --- Menú desplegable (§14.6) ---------------------------------- */
+
+.dropdown {
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline-start: 0;
+  z-index: var(--z-dropdown);
+  min-width: 15rem; /* 240px */
+  margin-block-start: var(--space-3xs); /* 4px de separación */
+  padding: var(--space-2xs);
+  list-style: none;
+  background-color: var(--surface-bg);
+  border: var(--border-width-hairline) solid var(--color-border-default);
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-elevated);
+
+  /* Entrada: opacidad y −4px, 200ms (§25.2). El atributo `hidden`
+     lo saca del árbol de accesibilidad cuando está cerrado. */
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity var(--motion-base) var(--ease-out),
+    transform var(--motion-base) var(--ease-out);
+}
+
+.dropdownOpen {
+  opacity: 1;
+  transform: none;
+}
+
+.dropdownLink {
+  display: flex;
+  align-items: center;
+  height: 2.75rem; /* 44px */
+  padding-inline: var(--space-sm);
+  font-size: var(--type-navigation-size);
+  font-weight: var(--font-weight-body-medium);
+  color: var(--surface-text);
+  text-decoration: none;
+  border-radius: var(--radius-xs);
+  transition: background-color var(--motion-instant) var(--ease-in-out);
+}
+
+@media (hover: hover) {
+  .dropdownLink:hover {
+    background-color: var(--surface-hover);
+  }
+}
+
+/* --- Acciones ---------------------------------------------------- */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex: none;
+}
+
+/* En móvil el CTA no vive en la cabecera: vive en la barra inferior
+   persistente (§15.1). Aparece a partir de tablet. */
+.cta {
+  display: none;
+}
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Área táctil de 44×44 con icono de 24 (§15.1). */
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-inline-end: -0.5rem; /* alinea ópticamente el trazo con el borde */
+  background: none;
+  border: 0;
+  color: var(--surface-text);
+  cursor: pointer;
+}
+
+/* --- Tablet ------------------------------------------------------ */
+
+@media (min-width: 768px) {
+  .cta {
+    display: inline-flex;
+  }
+}
+
+/* --- Escritorio -------------------------------------------------
+   Aquí aparece la navegación y desaparece el botón de menú. La
+   separación entre el último elemento y el CTA es de 48px (§14.1). */
+
+@media (min-width: 1024px) {
+  .inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .nav {
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .actions {
+    gap: 0;
+  }
+
+  .menuButton {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .navList {
+    gap: var(--space-2xs);
+  }
+}

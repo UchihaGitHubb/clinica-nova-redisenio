@@ -1,0 +1,159 @@
+/* ============================================================
+   Design tokens — Color
+   Fase 8 — dirección visual de la referencia.
+
+   #07345A  azul profundo (superficie, hero, CTA final)
+   #052B49  azul oscuro (pie)
+   #F5F1E9  marfil
+   #D8B36A  champagne (CTA, acentos)
+   #C9A45D  dorado suave (hover)
+   #FFFFFF  blanco
+   ============================================================ */
+
+:root {
+  --color-brand-primary: #07345a;
+  --color-brand-primary-dark: #052b49;
+  --color-brand-secondary: #3d5f78;
+  --color-brand-accent: #d8b36a;
+  --color-brand-accent-deep: #c9a45d;
+
+  --color-bg-primary: #f5f1e9;
+  --color-bg-secondary: color-mix(in srgb, var(--color-brand-primary) 10%, var(--color-bg-elevated));
+  --color-bg-sand: color-mix(in srgb, var(--color-brand-primary) 16%, var(--color-bg-elevated));
+  --color-bg-dark: #07345a;
+  --color-bg-elevated: #ffffff;
+  --color-bg-band: #4a6780;
+
+  --color-text-primary: #052b49;
+  --color-text-secondary: #3d5f78;
+  --color-text-muted: #3d5f78;
+  --color-text-on-dark: #f5f1e9;
+  --color-text-on-dark-muted: #b7c4ce;
+  --color-text-on-accent: #052b49;
+
+  --color-border-hairline: rgb(7 52 90 / 0.1);
+  --color-border-default: rgb(7 52 90 / 0.16);
+  --color-border-strong: rgb(7 52 90 / 0.32);
+  --color-border-accent: #d8b36a;
+  --color-border-on-dark: rgb(245 241 233 / 0.16);
+  --color-border-on-dark-hairline: rgb(245 241 233 / 0.1);
+  --color-divider: rgb(7 52 90 / 0.12);
+
+  --color-state-hover-surface: rgb(7 52 90 / 0.04);
+  --color-state-hover-surface-on-dark: rgb(245 241 233 / 0.06);
+  --color-state-active-surface: rgb(7 52 90 / 0.08);
+  --color-state-active-surface-on-dark: rgb(245 241 233 / 0.12);
+  --color-state-hover-primary: #052b49;
+  --color-state-active-primary: #041f36;
+  --color-state-hover-accent: #c9a45d;
+  --color-state-active-accent: #b8944e;
+  --color-state-focus: #07345a;
+  --color-state-focus-on-dark: #f5f1e9;
+  --color-state-disabled-surface: rgb(7 52 90 / 0.08);
+  --color-state-disabled-text: #8a93a0;
+  --color-state-disabled-border: rgb(7 52 90 / 0.12);
+
+  --color-feedback-success: #2f6b4e;
+  --color-feedback-warning: #8a5a0e;
+  --color-feedback-error: #9b3b2e;
+  --color-feedback-info: #3d5f78;
+
+  --color-overlay-hero: rgb(7 52 90 / 0.78);
+  --color-overlay-header: rgb(7 52 90 / 0.45);
+  --color-overlay-solid: rgb(7 52 90 / 0.82);
+}
+
+:root,
+[data-surface='primary'],
+[data-surface='secondary'],
+[data-surface='sand'],
+[data-surface='elevated'] {
+  --surface-text: var(--color-text-primary);
+  --surface-text-secondary: var(--color-text-secondary);
+  --surface-text-muted: var(--color-text-muted);
+  --surface-heading: var(--color-brand-primary);
+  --surface-border: var(--color-border-default);
+  --surface-border-hairline: var(--color-border-hairline);
+  --surface-border-strong: var(--color-border-strong);
+  --surface-hover: var(--color-state-hover-surface);
+  --surface-active: var(--color-state-active-surface);
+  --surface-focus: var(--color-state-focus);
+
+  --button-primary-bg: var(--color-brand-accent);
+  --button-primary-text: var(--color-text-on-accent);
+  --button-primary-bg-hover: var(--color-state-hover-accent);
+  --button-primary-bg-active: var(--color-state-active-accent);
+
+  --button-secondary-bg: transparent;
+  --button-secondary-border: var(--color-brand-primary);
+  --button-secondary-text: var(--color-brand-primary);
+  --button-secondary-bg-hover: var(--color-brand-primary);
+  --button-secondary-border-hover: var(--color-brand-primary);
+  --button-secondary-text-hover: var(--color-text-on-dark);
+}
+
+[data-surface='primary'] {
+  --surface-bg: var(--color-bg-primary);
+}
+
+[data-surface='secondary'] {
+  --surface-bg: var(--color-bg-secondary);
+}
+
+[data-surface='sand'] {
+  --surface-bg: var(--color-bg-sand);
+}
+
+[data-surface='elevated'] {
+  --surface-bg: var(--color-bg-elevated);
+}
+
+[data-surface='band'] {
+  --surface-bg: var(--color-bg-band);
+  --surface-text: var(--color-text-on-dark);
+  --surface-text-secondary: rgb(245 241 233 / 0.82);
+  --surface-text-muted: rgb(245 241 233 / 0.7);
+  --surface-heading: var(--color-text-on-dark);
+  --surface-border: rgb(245 241 233 / 0.18);
+  --surface-border-hairline: rgb(245 241 233 / 0.12);
+  --surface-border-strong: rgb(245 241 233 / 0.28);
+  --surface-hover: var(--color-state-hover-surface-on-dark);
+  --surface-active: var(--color-state-active-surface-on-dark);
+  --surface-focus: var(--color-state-focus-on-dark);
+  --button-primary-bg: var(--color-brand-accent);
+  --button-primary-text: var(--color-text-on-accent);
+  --button-primary-bg-hover: var(--color-state-hover-accent);
+  --button-primary-bg-active: var(--color-state-active-accent);
+  --button-secondary-bg: transparent;
+  --button-secondary-border: var(--color-text-on-dark);
+  --button-secondary-text: var(--color-text-on-dark);
+  --button-secondary-bg-hover: transparent;
+  --button-secondary-border-hover: var(--color-brand-accent);
+  --button-secondary-text-hover: var(--color-brand-accent);
+}
+
+[data-surface='dark'] {
+  --surface-bg: var(--color-bg-dark);
+  --surface-text: var(--color-text-on-dark);
+  --surface-text-secondary: var(--color-text-on-dark-muted);
+  --surface-text-muted: var(--color-text-on-dark-muted);
+  --surface-heading: var(--color-text-on-dark);
+  --surface-border: var(--color-border-on-dark);
+  --surface-border-hairline: var(--color-border-on-dark-hairline);
+  --surface-border-strong: var(--color-border-on-dark);
+  --surface-hover: var(--color-state-hover-surface-on-dark);
+  --surface-active: var(--color-state-active-surface-on-dark);
+  --surface-focus: var(--color-state-focus-on-dark);
+
+  --button-primary-bg: var(--color-brand-accent);
+  --button-primary-text: var(--color-text-on-accent);
+  --button-primary-bg-hover: var(--color-state-hover-accent);
+  --button-primary-bg-active: var(--color-state-active-accent);
+
+  --button-secondary-bg: transparent;
+  --button-secondary-border: var(--color-brand-accent);
+  --button-secondary-text: var(--color-text-on-dark);
+  --button-secondary-bg-hover: transparent;
+  --button-secondary-border-hover: var(--color-brand-accent-deep);
+  --button-secondary-text-hover: var(--color-brand-accent);
+}

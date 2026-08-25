@@ -1,0 +1,92 @@
+/* BleedSplit · imagen y texto como una sola composición */
+
+.split {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: var(--ratio-landscape);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.caption {
+  padding-inline: var(--layout-padding);
+  margin-block-start: var(--space-xs);
+  color: var(--surface-text-muted);
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-leading);
+}
+
+.content {
+  min-width: 0;
+  padding-inline: var(--layout-padding);
+}
+
+/* --- Escritorio --------------------------------------------------
+   La foto sangra al borde; el texto arranca en el eje del container.
+   Las dos columnas comparten altura para leerse como un solo bloque. */
+
+@media (min-width: 1024px) {
+  .split {
+    --split-axis: max(var(--layout-padding), calc((100vw - var(--layout-container-max)) / 2));
+
+    grid-template-columns: minmax(0, 54%) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .figure {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1;
+    height: 100%;
+  }
+
+  .frame {
+    flex: 1 1 auto;
+    aspect-ratio: auto;
+    min-height: 28rem;
+  }
+
+  .caption {
+    padding-inline: 0;
+    margin-inline-start: var(--space-xl);
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-column: 2;
+    padding-inline: var(--space-xl) var(--split-axis);
+  }
+
+  .sideEnd {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 54%);
+  }
+
+  .sideEnd .figure {
+    grid-column: 2;
+  }
+
+  .sideEnd .caption {
+    margin-inline: 0 var(--space-xl);
+    text-align: end;
+  }
+
+  .sideEnd .content {
+    grid-column: 1;
+    grid-row: 1;
+    padding-inline: var(--split-axis) var(--space-xl);
+  }
+}

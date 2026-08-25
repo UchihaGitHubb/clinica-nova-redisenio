@@ -1,0 +1,91 @@
+/* ============================================================
+   Design tokens — Layout, ratios y z-index
+   Fuente: docs/04-DESIGN-SYSTEM.md §8, §28, §29.4
+
+   Breakpoints (§28.1). Cada uno corresponde a un ancho de
+   dispositivo real, no a un número redondo:
+     tablet   768px  — iPad vertical
+     desktop 1024px  — iPad horizontal / portátil pequeño
+     wide    1440px  — portátil de trabajo
+
+   CSS no admite custom properties dentro de @media, así que los
+   valores literales de las media queries son inevitables. La
+   fuente única para JS/TS es lib/breakpoints.ts: mantener ambos
+   sincronizados.
+   ============================================================ */
+
+:root {
+  /* --- Contenedor -----------------------------------------
+     Un solo eje para toda la Home. 1320px de contenido; el padding
+     lateral vive fuera de esa medida (box-sizing: border-box en el
+     Container). Hero, header y secciones comparten este número. */
+  --layout-container-max: 82.5rem; /* 1320px */
+  --layout-container-wide: 82.5rem; /* mismo eje: no hay un segundo ancho */
+  --layout-columns: 12;
+
+  /* Padding lateral, mobile-first */
+  --layout-padding: 1.25rem; /* 20px */
+
+  --layout-gutter: 1.5rem; /* 24px */
+
+  /* Filete champagne de apertura: mismo gesto en hero, cabeceras
+     de sección y franja de confianza. */
+  --layout-accent-rule: var(--space-xl); /* 48px */
+
+  /* Ritmo vertical de sección. El lujo lo da la composición, no
+     el padding gigante. */
+  --section-padding-y-compact: var(--space-xl); /*  48px */
+  --section-padding-y: var(--space-2xl); /*  64px */
+  --section-padding-y-wide: var(--space-3xl); /*  80px */
+
+  /* Altura de la cabecera fija */
+  --header-height: 4rem; /* 64px móvil */
+  --header-height-compact: 3.5rem; /* 56px móvil desplazada */
+
+  /* --- Ratios de imagen (§17.1) --------------------------- */
+  --ratio-portrait: 2 / 3; /* procedimientos, categorías */
+  --ratio-portrait-wide: 4 / 5; /* retratos de especialista */
+  --ratio-landscape: 3 / 2; /* institucionales, casos, editorial */
+  --ratio-square: 1 / 1; /* solo mosaico de resultados */
+
+  /* --- z-index (§29.4) ----------------------------------- */
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-dropdown: 50;
+  --z-header: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+}
+
+/* A partir de 400px el padding lateral respira (§8.1) */
+@media (min-width: 400px) {
+  :root {
+    --layout-padding: 1.5rem; /* 24px */
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  :root {
+    --layout-padding: 2rem; /* 32px */
+    --layout-gutter: 1.5rem; /* 24px */
+    --section-padding-y-compact: var(--space-2xl); /*  64px */
+    --section-padding-y: var(--space-3xl); /*  80px */
+    --section-padding-y-wide: var(--space-4xl); /*  96px */
+    --header-height: 4.5rem; /* 72px */
+    --header-height-compact: 4rem; /* 64px */
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  :root {
+    --layout-padding: 3rem; /* 48px */
+    --layout-gutter: 1.5rem; /* 24px */
+    --section-padding-y-compact: var(--space-2xl); /*  64px */
+    --section-padding-y: var(--space-4xl); /*  96px */
+    --section-padding-y-wide: var(--space-5xl); /* 120px */
+  --header-height: 4.5rem; /* 72px */
+  --header-height-compact: 4rem; /* 64px */
+  }
+}

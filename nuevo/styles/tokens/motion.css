@@ -1,0 +1,51 @@
+/* ============================================================
+   Design tokens — Movimiento
+   Fuente: docs/04-DESIGN-SYSTEM.md §25, §26, §29.4
+
+   El movimiento confirma; nunca entretiene.
+   Rápido para la respuesta (120–200ms), lento para la elegancia
+   (400–600ms). El cierre es ~15% más rápido que la apertura.
+
+   Límites absolutos: 16px de desplazamiento, 3% de escala,
+   600ms de duración, cero repeticiones.
+   ============================================================ */
+
+:root {
+  /* --- Duraciones (§25.1) -------------------------------- */
+  --motion-instant: 120ms; /* cambio de color inmediato */
+  --motion-fast: 160ms; /* estados de botón y campo */
+  --motion-base: 200ms; /* hover, subrayado, giro de chevron */
+  --motion-medium: 240ms; /* desplegables, acordeón, cierre de panel */
+  --motion-slow: 280ms; /* panel móvil, barra inferior */
+  --motion-reveal: 620ms; /* aparición al desplazarse */
+  --motion-reveal-fade: 480ms; /* el fundido se adelanta al desplazamiento */
+  --motion-image: 700ms; /* escala de imagen en hover */
+
+  /* --- Curvas (§25.1) ------------------------------------ */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* entradas */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1); /* cambios de estado */
+  --ease-linear: linear; /* fundidos de opacidad */
+
+  /* --- Límites (§25.3) ----------------------------------- */
+  --motion-distance-max: 1.25rem;
+  --motion-scale-max: 1.03;
+
+  /* Escalonado de grupo: máximo 8 elementos encadenados */
+  --motion-stagger: 95ms;
+}
+
+/* prefers-reduced-motion es un estado de primera clase (§26.5).
+   Se neutraliza el movimiento, NO el color ni el foco: esos
+   comunican información, no decoración. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-reveal: 1ms;
+    --motion-reveal-fade: 1ms;
+    --motion-image: 1ms;
+    --motion-slow: 1ms;
+    --motion-medium: 1ms;
+    --motion-distance-max: 0px;
+    --motion-scale-max: 1;
+    --motion-stagger: 0ms;
+  }
+}

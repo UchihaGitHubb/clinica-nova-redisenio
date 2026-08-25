@@ -1,0 +1,27 @@
+/* SkipLink · docs/04-DESIGN-SYSTEM.md §27.2, §30.1
+
+   Primer elemento enfocable de la página. Invisible hasta recibir
+   el foco, momento en el que aparece sobre todo lo demás. */
+
+.skipLink {
+  position: fixed;
+  top: var(--space-2xs);
+  left: var(--space-2xs);
+  z-index: var(--z-modal);
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  border: var(--border-width-hairline) solid var(--color-border-default);
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-floating);
+  font-size: var(--type-button-size);
+  font-weight: var(--type-button-weight);
+  text-decoration: none;
+
+  /* Fuera de pantalla, pero enfocable y anunciado por lectores. */
+  transform: translateY(calc(-100% - var(--space-lg)));
+}
+
+.skipLink:focus-visible {
+  transform: translateY(0);
+}

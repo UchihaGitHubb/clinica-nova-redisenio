@@ -1,0 +1,10 @@
+/* Icon · docs/04-DESIGN-SYSTEM.md §24 */
+
+.icon {
+  display: block;
+  flex: none;
+
+  /* El glifo se alinea ópticamente con la línea base del texto que
+     acompaña, sin necesidad de un margen de corrección. */
+  vertical-align: middle;
+}

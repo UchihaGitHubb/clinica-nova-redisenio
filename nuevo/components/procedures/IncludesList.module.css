@@ -1,0 +1,18 @@
+.list {
+  display: grid;
+  gap: 0;
+  list-style: none;
+}
+
+.item {
+  padding-block: 0.7rem;
+  border-top: var(--border-width-hairline) solid var(--surface-border-hairline);
+  color: var(--surface-text);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+}
+
+.item:first-child {
+  border-top: 0;
+  padding-block-start: 0;
+}

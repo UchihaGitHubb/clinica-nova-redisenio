@@ -1,0 +1,179 @@
+/* Button · docs/04-DESIGN-SYSTEM.md §13
+
+   Cinco variantes y ni una más. Ningún botón se escala ni se
+   desplaza en hover o active: solo cambia el color (§13.1).
+   El foco lo resuelve la regla global :focus-visible de base.css. */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  min-height: 3.25rem; /* 52px */
+  padding-inline: 1.75rem; /* 28px */
+  border: var(--border-width-hairline) solid transparent;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-body);
+  font-size: var(--type-button-size);
+  font-weight: var(--type-button-weight);
+  line-height: var(--type-button-leading);
+  letter-spacing: var(--type-button-tracking);
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background-color var(--motion-fast) var(--ease-in-out),
+    border-color var(--motion-fast) var(--ease-in-out),
+    color var(--motion-fast) var(--ease-in-out),
+    text-decoration-color var(--motion-base) var(--ease-in-out),
+    transform var(--motion-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .button:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button:hover {
+    transform: none;
+  }
+}
+
+/* Altura compacta: cabecera y usos en línea (§13.1). Nunca por
+   debajo de 44px, que es el mínimo táctil (§27.3). */
+.compact {
+  min-height: 2.75rem; /* 44px */
+  padding-inline: 1.25rem; /* 20px */
+}
+
+/* Ancho completo solo en móvil y en formularios (§13.7). */
+.fullWidth {
+  width: 100%;
+}
+
+/* --- Primary -----------------------------------------------
+   Champagne en todas las superficies: es el único relleno de
+   acento del sistema. El hover lo fija --color-state-hover-accent. */
+.primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+}
+
+.primary:active {
+  background-color: var(--button-primary-bg-active);
+}
+
+/* --- Secondary --------------------------------------------- */
+.secondary {
+  background-color: var(--button-secondary-bg, transparent);
+  color: var(--button-secondary-text, var(--surface-text));
+  border-color: var(--button-secondary-border, var(--surface-border));
+}
+
+.secondary:active {
+  background-color: var(--button-secondary-bg-hover, var(--surface-active));
+  border-color: var(--button-secondary-border-hover, var(--surface-border-strong));
+  color: var(--button-secondary-text-hover, var(--surface-text));
+}
+
+/* --- Ghost -------------------------------------------------
+   Acciones de baja jerarquía. Sin borde en ningún estado. */
+.ghost {
+  background-color: transparent;
+  color: var(--surface-text);
+  padding-inline: var(--space-sm);
+}
+
+.ghost:active {
+  background-color: var(--surface-active);
+}
+
+/* --- Text --------------------------------------------------
+   Enlace de acción: el color no cambia en hover, solo el
+   subrayado pasa de traslúcido a opaco (§13.5). */
+.text {
+  min-height: 0;
+  padding-inline: 0;
+  background-color: transparent;
+  color: var(--surface-text);
+  font-weight: var(--font-weight-body-medium);
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--border-width-hairline);
+  text-decoration-color: var(--surface-border-strong);
+  text-underline-offset: 4px;
+}
+
+/* --- WhatsApp / Contact ------------------------------------
+   Deliberadamente NO usa el verde de marca de WhatsApp (#25D366):
+   sería el elemento más discordante del sitio y es el rasgo más
+   reconocible de la plantilla de clínica (§13.6). El glifo va en
+   monocromo heredando currentColor. */
+.whatsapp {
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-default);
+}
+
+.whatsapp:active {
+  background-color: var(--color-bg-secondary);
+}
+
+[data-surface='dark'] .whatsapp {
+  background-color: transparent;
+  color: var(--color-text-on-dark);
+  border-color: var(--color-border-on-dark);
+}
+
+/* --- Hover -------------------------------------------------
+   Aislado en `hover: hover` para que en pantallas táctiles el
+   estado no quede pegado tras el toque. */
+@media (hover: hover) {
+  .primary:hover {
+    background-color: var(--button-primary-bg-hover);
+  }
+
+  .secondary:hover {
+    background-color: var(--button-secondary-bg-hover, var(--surface-hover));
+    border-color: var(--button-secondary-border-hover, var(--surface-border-strong));
+    color: var(--button-secondary-text-hover, var(--surface-text));
+  }
+
+  .ghost:hover {
+    background-color: var(--surface-hover);
+  }
+
+  .text:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .whatsapp:hover {
+    border-color: var(--color-border-strong);
+  }
+
+  [data-surface='dark'] .whatsapp:hover {
+    background-color: var(--surface-hover);
+  }
+}
+
+/* --- Disabled ----------------------------------------------
+   Exento del mínimo de contraste, pero debe seguir siendo
+   legible (§3.6). */
+.button:disabled,
+.button[aria-disabled='true'] {
+  cursor: not-allowed;
+  color: var(--color-state-disabled-text);
+  border-color: transparent;
+  text-decoration-color: transparent;
+}
+
+.primary:disabled,
+.primary[aria-disabled='true'],
+.secondary:disabled,
+.secondary[aria-disabled='true'],
+.whatsapp:disabled,
+.whatsapp[aria-disabled='true'] {
+  background-color: var(--color-state-disabled-surface);
+  border-color: var(--color-state-disabled-border);
+}

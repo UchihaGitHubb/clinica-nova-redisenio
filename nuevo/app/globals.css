@@ -1,0 +1,22 @@
+/* ============================================================
+   Hoja global — Clínica Nova
+   Único punto de entrada de CSS global. Se importa una sola vez,
+   en app/layout.tsx.
+
+   Orden obligatorio: primero los tokens (definen las variables),
+   después el reset, y por último la base (consume las variables).
+
+   Los estilos de componente NO viven aquí: cada componente tiene
+   su propio archivo .module.css.
+   ============================================================ */
+
+/* --- Design tokens · docs/04-DESIGN-SYSTEM.md §29 --------- */
+@import '../styles/tokens/color.css';
+@import '../styles/tokens/typography.css';
+@import '../styles/tokens/space.css';
+@import '../styles/tokens/layout.css';
+@import '../styles/tokens/motion.css';
+
+/* --- Base global ----------------------------------------- */
+@import '../styles/reset.css';
+@import '../styles/base.css';
