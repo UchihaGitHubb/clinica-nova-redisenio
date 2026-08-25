@@ -36,6 +36,11 @@ export function Footer() {
                 ))}
               </ul>
             ) : null}
+
+            <div className={styles.write}>
+              <h2 className={styles.columnTitle}>Recibe novedades</h2>
+              <NewsletterForm />
+            </div>
           </Reveal>
 
           <Reveal index={1}>
@@ -90,21 +95,18 @@ export function Footer() {
                   {site.contact.address}
                 </a>
               </li>
-              {site.contact.openingHours.map((slot) => (
-                <li key={slot.days} className={styles.contactItem}>
-                  <span>
-                    {slot.days}
-                    <br />
-                    {slot.hours}
-                  </span>
-                </li>
-              ))}
+              <li className={styles.contactItem}>
+                <Icon name="clock" size={16} className={styles.contactIcon} />
+                <ul className={styles.hours}>
+                  {site.contact.openingHours.map((slot) => (
+                    <li key={slot.days}>
+                      <span className={styles.hoursDays}>{slot.days}</span>
+                      <span className={styles.hoursTime}>{slot.hours}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
             </ul>
-          </Reveal>
-
-          <Reveal index={3} className={styles.write}>
-            <h2 className={styles.columnTitle}>Recibe novedades</h2>
-            <NewsletterForm />
           </Reveal>
         </RevealGroup>
 

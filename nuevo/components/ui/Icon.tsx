@@ -10,6 +10,7 @@ export type IconName =
   | 'whatsapp'
   | 'phone'
   | 'pin'
+  | 'clock'
   | 'cross'
   | 'building'
   | 'bloom'
@@ -88,6 +89,12 @@ const paths: Record<IconName, ReactNode> = {
     <>
       <path d="M20 10.5c0 5.5-8 12-8 12s-8-6.5-8-12a8 8 0 0 1 16 0z" />
       <circle cx="12" cy="10.5" r="2.75" />
+    </>
+  ),
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <polyline points="12 7 12 12 15.5 14" />
     </>
   ),
   cross: (

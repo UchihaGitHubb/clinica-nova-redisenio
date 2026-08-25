@@ -47,17 +47,11 @@ export function Process() {
             <ol className={styles.steps}>
               {processSteps.map((step, index) => (
                 <Reveal as="li" key={step.numeral} index={index + 4} className={styles.step}>
-                  {index > 0 ? (
-                    <span className={styles.connector} aria-hidden="true">
-                      <Icon name="arrow-right" size={14} />
-                    </span>
-                  ) : null}
-                  <span className={styles.iconWrap} aria-hidden="true">
-                    <Icon name={step.icon} size={22} />
-                  </span>
-                  <p className={styles.numeral}>{step.numeral}</p>
-                  <h3 className={styles.stepTitle}>{step.title}</h3>
-                  <p className={styles.stepBody}>{step.description}</p>
+                  <span className={styles.numeral}>{step.numeral}</span>
+                  <div className={styles.stepCopy}>
+                    <h3 className={styles.stepTitle}>{step.title}</h3>
+                    <p className={styles.stepBody}>{step.description}</p>
+                  </div>
                 </Reveal>
               ))}
             </ol>

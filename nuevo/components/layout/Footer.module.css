@@ -70,6 +70,10 @@
 }
 
 .write .columnTitle:not(:first-child) {
+  margin-block-start: 0;
+}
+
+.write {
   margin-block-start: var(--space-xl);
 }
 
@@ -93,6 +97,27 @@
 .contactIcon {
   margin-block-start: 0.25em;
   color: var(--color-brand-accent);
+}
+
+.hours {
+  display: grid;
+  gap: var(--space-xs);
+  list-style: none;
+  color: var(--surface-text);
+}
+
+.hours li {
+  display: grid;
+}
+
+.hoursDays {
+  font-size: var(--type-caption-size);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hoursTime {
+  color: var(--surface-text);
 }
 
 .contactLink,
@@ -149,8 +174,9 @@
   }
 
   .top {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.7fr) minmax(0, 1.15fr);
     gap: var(--layout-gutter) var(--space-2xl);
+    align-items: start;
   }
 
   .bottom {
@@ -167,7 +193,7 @@
   }
 
   .top {
-    grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, 0.8fr));
+    grid-template-columns: minmax(16rem, 1.2fr) minmax(8rem, 0.65fr) minmax(16rem, 1.15fr);
     gap: var(--layout-gutter);
   }
 }
