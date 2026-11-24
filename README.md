@@ -1,6 +1,10 @@
 # Clínica Nova — rediseño
 
-Propuesta privada de alta fidelidad para [Clínica Nova](https://www.clinicanova.com.co). Concepto: *Precisión médica. Elegancia humana.*
+Propuesta de rediseño de alta fidelidad para [Clínica Nova](https://www.clinicanova.com.co). Concepto: *Precisión médica. Elegancia humana.*
+
+**Demo:** [clinica-nova-five.vercel.app](https://clinica-nova-five.vercel.app) · **Stack:** Next.js 16 (App Router), React, TypeScript, Tailwind CSS, Vercel
+
+> **Aviso:** proyecto de portafolio independiente. No está afiliado ni avalado por Clínica Nova; su nombre, logotipo, textos e imágenes pertenecen a sus titulares. El código se publica solo para consulta: **todos los derechos reservados** (ver [LICENSE](LICENSE)). No se permite copiarlo, modificarlo ni reutilizarlo sin permiso escrito del autor.
 
 La aplicación vive en **`nuevo/`**. Esa carpeta es el directorio raíz en Vercel.
 
